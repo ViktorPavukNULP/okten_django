@@ -24,8 +24,10 @@ class CarListCreateView(ListCreateAPIView):
         price_lt = self.request.query_params.get('price_lt', None)
         if price_lt:
             qs = qs.filter(price__lt=price_lt)
+        auto_park_id = self.request.query_params.get('auto_park', None)
+        if auto_park_id:
+            qs = qs.filter(auto_park=auto_park_id)
         return qs
-
 
 class ReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
