@@ -7,3 +7,9 @@ class CarSerializer(ModelSerializer):
     class Meta:
         model = CarModel
         fields = ('id', 'brand', 'price', 'year')
+
+
+class CarSerializerAutopark(ModelSerializer):
+    class Meta:
+        model = CarModel
+        fields = ('id', 'brand', 'price', 'year', 'auto_park')

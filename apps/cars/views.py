@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import CarModel
-from .serializers import CarSerializer
+from .serializers import CarSerializer, CarSerializerAutopark
 
 # CRUD
 """
@@ -17,7 +17,7 @@ Delete DELETE
 
 class CarListCreateView(ListCreateAPIView):
     # queryset = CarModel.objects.all()
-    serializer_class = CarSerializer
+    serializer_class = CarSerializerAutopark
 
     def get_queryset(self):
         qs = CarModel.objects.all()
