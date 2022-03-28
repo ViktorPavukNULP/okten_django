@@ -1,4 +1,5 @@
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from apps.cars.serializers import CarSerializer
 
@@ -8,6 +9,7 @@ from .serializers import AutoParkSerializer
 
 
 class AutoParkListCreateView(ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = AutoParkSerializer
     queryset = AutoParkModel.objects.all()
 
@@ -22,5 +24,6 @@ class AutoParkAddCarView(CreateAPIView):
         serializer.save(auto_park=auto_park)
 
 class AutoParkReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = AutoParkModel.objects.all()
     serializer_class = AutoParkSerializer

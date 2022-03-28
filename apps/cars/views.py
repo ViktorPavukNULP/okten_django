@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -16,7 +17,7 @@ Delete DELETE
 
 
 class CarListCreateView(ListCreateAPIView):
-    # queryset = CarModel.objects.all()
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = CarSerializerAutopark
 
     def get_queryset(self):
@@ -30,5 +31,6 @@ class CarListCreateView(ListCreateAPIView):
         return qs
 
 class ReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
