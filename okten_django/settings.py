@@ -32,7 +32,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
-
+AUTH_USER_MODEL = 'user.UserModel'
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
 
+    'apps.user',
     'apps.cars',
     'apps.autopark'
 ]
@@ -87,7 +88,7 @@ WSGI_APPLICATION = 'okten_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sep_2021',
+        'NAME': 'sep_2021_users',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
