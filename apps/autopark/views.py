@@ -1,9 +1,10 @@
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from .serializers import AutoParkSerializer
-from .models import AutoParkModel
 from apps.cars.serializers import CarSerializer
+
 from ..cars.models import CarModel
+from .models import AutoParkModel
+from .serializers import AutoParkSerializer
 
 
 class AutoParkListCreateView(ListCreateAPIView):

@@ -14,6 +14,7 @@ sqlparse = "==0.4.2"
 tzdata = "==2021.5"
 
 [dev-packages]
+isort = "*"
 
 [requires]
 python_version = "3.10"
