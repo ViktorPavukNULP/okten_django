@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
 
+    'apps.profile',
     'apps.user',
     'apps.cars',
     'apps.autopark'
