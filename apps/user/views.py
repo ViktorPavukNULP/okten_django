@@ -35,3 +35,17 @@ class UserToAdminView(GenericAPIView):
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+class AdminToUserView(GenericAPIView):
+    permission_classes = (IsSuperUser,)
+    queryset = UserModel.objects.all()
+
+    def patch(self, *args, **kwargs):
+        user = self.get_object()
+        if not user.is_staff:
+            return Response({"detail": "User is already not an admin"}, status=status.HTTP_400_BAD_REQUEST)
+        user.is_staff = False
+        user.save()
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
