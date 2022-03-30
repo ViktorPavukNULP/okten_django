@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from ..profile.serializers import AddAvatarSerializer
 from .permissions import IsSuperUser
 from .serializers import UserSerializer
 
@@ -48,4 +49,12 @@ class AdminToUserView(GenericAPIView):
         user.save()
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AddAvatarView(UpdateAPIView):
+    serializer_class = AddAvatarSerializer
+
+    def get_object(self):
+        return self.request.user.profile
+
+
 
