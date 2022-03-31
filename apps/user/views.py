@@ -16,10 +16,13 @@ class UserListCreateView(ListCreateAPIView):
 
     def get_permissions(self):
         if self.request.method == 'POST':
-            return (AllowAny(),)
+            return AllowAny(),
         return super().get_permissions()
 
-    queryset = UserModel.objects.all()
+    def get_queryset(self):
+        qs = UserModel.objects.all()
+        return qs.exclude(id=self.request.user.id)
+
     serializer_class = UserSerializer
 
 
