@@ -7,6 +7,7 @@ from apps.profile.models import ProfileModel
 from apps.profile.serializers import ProfileSerializer
 
 from .models import UserModel as User
+from utils.email_util import EmailUtils
 
 UserModel: User = get_user_model()
 
@@ -17,7 +18,8 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = UserModel
         fields = (
-            'id', 'email', 'password', 'profile', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'created_at', 'updated_at'
+            'id', 'email', 'password', 'profile', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'created_at',
+            'updated_at'
         )
         read_only_fields = (
             'id', 'is_active', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'created_at', 'updated_at'
@@ -34,4 +36,5 @@ class UserSerializer(ModelSerializer):
         profile = validated_data.pop('profile')
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
+        EmailUtils.register_email(user.email, user.profile.name)
         return user
