@@ -19,6 +19,4 @@ def custom_error_handler(exc: Exception, content) -> Response:
 
 
 def _jwt_validate_error(exc: Exception, content: dict) -> Response:
-    # print(exc.__class__.__name__)
-    # print(content)
     return Response(ErrorEnum.JWT.msg, ErrorEnum.JWT.code)
