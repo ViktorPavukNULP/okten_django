@@ -18,6 +18,12 @@ Delete DELETE
 
 
 class CarListCreateView(ListCreateAPIView):
+    '''
+    get:
+        Get all cars with filters
+    post:
+        Create car
+    '''
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = CarModel.objects.all()
     serializer_class = CarSerializerAutopark
