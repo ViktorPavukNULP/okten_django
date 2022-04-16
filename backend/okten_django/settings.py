@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
 
+    'apps.core',
     'apps.profile',
     'apps.user',
     'apps.cars',
