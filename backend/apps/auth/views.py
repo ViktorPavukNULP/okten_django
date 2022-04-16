@@ -5,9 +5,12 @@ from rest_framework.response import Response
 
 from utils.jwt_util import JwtUtils
 
+from apps.user.serializers import UserSerializer
+
 
 class ActivateUserByEmailView(GenericAPIView):
     permission_classes = (AllowAny,)
+    serializer_class = UserSerializer
 
     def get(self, *args, **kwargs):
         token = kwargs.get('token')
