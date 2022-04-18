@@ -5,9 +5,12 @@ from django.template.loader import get_template
 
 from enums.templates_enum import TemplateEnum
 
+from okten_django.celery import app
+
 
 class EmailUtils:
     @staticmethod
+    @app.task
     def _send_email(to: str, template_name: str, context: dict, subject='') -> None:
         template = get_template(template_name)
         html_content = template.render(context)
@@ -18,4 +21,4 @@ class EmailUtils:
     @classmethod
     def register_email(cls, address: str, name: str, token: str) -> None:
         url = f'{os.environ.get("FRONTEND_HOST")}activate/{token}/'
-        cls._send_email(address, TemplateEnum.REGISTER.value, {'name': name, 'link': url})
+        cls._send_email.delay(address, TemplateEnum.REGISTER.value, {'name': name, 'link': url})
