@@ -1,0 +1,12 @@
+.CarsPage form div{
+    margin: 5px;
+}
+
+.CarsPage form .error{
+    color: indianred;
+    margin-top: 0;
+}
+
+button{
+    margin: 0 5px;
+}
