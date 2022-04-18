@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'django_celery_results',
+    'django_celery_beat',
     
     'apps.core',
     'apps.profile',

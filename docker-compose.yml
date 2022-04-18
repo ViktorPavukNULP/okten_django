@@ -50,4 +50,4 @@ services:
       - .env
     restart: on-failure
     command: > 
-      celery -A okten_django worker -l info
+      celery -A okten_django worker -l info -B

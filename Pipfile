@@ -18,6 +18,7 @@ django-filter = "*"
 drf-yasg = "*"
 celery = {extras = ["redis"], version = "*"}
 django-celery-results = "*"
+django-celery-beat = "*"
 
 [dev-packages]
 isort = "*"
